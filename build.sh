@@ -10,23 +10,22 @@ meson builddir/ \
   --buildtype=release \
   --prefix=$PREFIX \
   -Dplatforms=x11 \
-  -Dgles1=false \
-  -Dgles2=false \
+  -Dlibdir=lib \
+  -Dgles1=disabled \
+  -Dgles2=disabled \
   -Dgallium-va=disabled \
   -Dgbm=disabled \
+  -Degl=disabled \
   -Dgallium-xvmc=disabled \
   -Dgallium-vdpau=disabled \
-  -Dshared-glapi=enabled \
-  -Ddri3=disabled \
   -Ddri-drivers=[] \
+  -Dvulkan-drivers=[] \
+  -Dllvm=true \
+  -Dshared-llvm=true \
+  -Dlibunwind=false \
   -Dglx=gallium-xlib \
   -Dgallium-drivers=swrast \
-  -Degl=disabled \
-  -Dllvm=false \
-  -Dshared-llvm=false \
-  -Dlibdir=lib \
   -Dosmesa=true \
-  -Dvulkan-drivers=[] \
   -Dopengl=true \
   || { cat builddir/meson-logs/meson-log.txt; exit 1; }
 

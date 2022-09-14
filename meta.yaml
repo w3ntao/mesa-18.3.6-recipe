@@ -1,0 +1,86 @@
+{% set name = "mesa" %}
+{% set version = "21.3.9" %}
+
+package:
+  name: {{ name|lower }}
+  version: "{{ version }}"
+
+source:
+  url: ../pkgs/mesa-{{ version }}.tar.xz
+  sha256: 91fe6f20339884e37a7c47bfba42fb1cd397512c9ed5ad423de369f047cd8b5c
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    # - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
+    # - {{ cdt('libxxf86vm-devel') }}      # [linux]
+    # - {{ cdt('libxshmfence-devel') }}    # [linux]
+    - sysroot_linux-64 2.17  # [linux64]
+    - meson
+    - mako
+    - flex
+    - bison
+    - pkg-config
+
+  host:
+    - expat
+    - zlib
+    - libdrm                       # [linux]
+    - elfutils                     # [linux]
+    - ncurses
+    - llvmdev
+    - xorg-libx11
+    - xorg-libxext
+    - xorg-xextproto
+    - xorg-xf86vidmodeproto
+    - xorg-libxrandr
+    - xorg-libxfixes
+    - xorg-glproto
+    - libxcb
+    - xorg-libxdamage
+
+  run:
+    - xorg-libx11
+    - xorg-libxext
+    - xorg-xextproto
+    - xorg-xf86vidmodeproto
+    - xorg-libxrandr
+    - xorg-libxfixes
+    - xorg-glproto
+    - xorg-libxdamage
+
+test:
+  requires:
+    - pkg-config
+  commands:
+    - test -f $PREFIX/lib/libGL${SHLIB_EXT}               # [linux]
+    - test -f $PREFIX/lib/libOSMesa${SHLIB_EXT}           # [linux]
+    - test -f $PREFIX/lib/libglapi${SHLIB_EXT}            # [linux]
+    - pkg-config --exists osmesa
+    - pkg-config --exists gl
+
+about:
+  home: https://www.mesa3d.org
+  license: MIT
+  license_family: MIT
+  license_file: docs/license.rst
+  summary: Mesa is an open-source implementation of the OpenGL specification - a system for rendering interactive 3D graphics.
+  dev_url: https://gitlab.freedesktop.org/mesa/mesa
+  doc_url: https://docs.mesa3d.org/
+
+extra:
+    recipe-maintainers:
+      - dnadeau4
+      - doutriaux1
+      - sankhesh
+      - danlipsa
+      - hmaarrfk
+      - muryanto1
+      - downiec
+      - jasonb5
+      - matthiasdiener
+      - programfan

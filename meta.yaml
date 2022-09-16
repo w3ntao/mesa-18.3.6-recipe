@@ -44,14 +44,6 @@ requirements:
 
   run:
     - libllvm14
-    - xorg-libx11
-    - xorg-libxext
-    - xorg-xextproto
-    - xorg-xf86vidmodeproto
-    - xorg-libxrandr
-    - xorg-libxfixes
-    - xorg-glproto
-    - xorg-libxdamage
 
 test:
   requires:

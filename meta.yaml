@@ -27,7 +27,6 @@ requirements:
     - pkg-config
 
   host:
-    - expat
     - zlib
     - libdrm                       # [linux]
     - elfutils                     # [linux]

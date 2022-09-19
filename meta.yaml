@@ -32,11 +32,10 @@ requirements:
     - elfutils                     # [linux]
     - ncurses
     - llvmdev 14
-    - xorg-libx11
-    - xorg-libxext
-    - xorg-libxrandr         # necessary
-    - xorg-glproto           # necessary
-    - libxcb
+    - xorg-libx11          # necessary
+    - xorg-libxext         # necessary
+    - xorg-libxrandr       # necessary
+    - xorg-glproto         # necessary
 
   run:
     - libllvm14

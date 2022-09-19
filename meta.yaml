@@ -10,7 +10,7 @@ source:
   sha256: 91fe6f20339884e37a7c47bfba42fb1cd397512c9ed5ad423de369f047cd8b5c
 
 build:
-  number: 4
+  number: 5
 
 requirements:
   build:
@@ -28,6 +28,7 @@ requirements:
 
   host:
     - zlib
+    - expat
     - libdrm                       # [linux]
     - elfutils                     # [linux]
     - ncurses
@@ -39,6 +40,13 @@ requirements:
 
   run:
     - libllvm14
+
+test:
+    commands:
+      - test -f $PREFIX/lib/libGL${SHLIB_EXT}               # [linux]
+      - test -f $PREFIX/lib/libOSMesa${SHLIB_EXT}           # [linux]
+      - test -f $PREFIX/lib/libglapi${SHLIB_EXT}            # [linux]
+
 
 about:
   home: https://www.mesa3d.org

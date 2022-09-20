@@ -10,15 +10,14 @@ source:
   sha256: 91fe6f20339884e37a7c47bfba42fb1cd397512c9ed5ad423de369f047cd8b5c
 
 build:
-  number: 5
+  number: 6
+  #script_env:
+  # - PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/share/pkgconfig
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    # - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
-    # - {{ cdt('libxxf86vm-devel') }}      # [linux]
-    # - {{ cdt('libxshmfence-devel') }}    # [linux]
     - sysroot_linux-64 2.17  # [linux64]
     - meson
     - mako
@@ -33,10 +32,6 @@ requirements:
     - elfutils                     # [linux]
     - ncurses
     - llvmdev 14
-    - xorg-libx11          # necessary
-    - xorg-libxext         # necessary
-    - xorg-libxrandr       # necessary
-    - xorg-glproto         # necessary
 
   run:
     - libllvm14
